@@ -10,11 +10,25 @@ var recipeListEl = document.querySelector("#recipe-list");
 var displayRecipes = function (data){
 
     for (var i = 0; i < data.results.length; i++) {
-        var recipeListItemEl = document.createElement("div");
-        var recipeTitleName = document.createElement("h3");
-        recipeTitleName.textContent = data.results[i].title;
-        recipeListItemEl.appendChild(recipeTitleName);
 
+        // Create the elements to hold the recipe title, image and bake time.
+        var recipeListItemEl = document.createElement("div");
+        recipeListItemEl.classList.add("result");
+        var recipeImgEl = document.createElement("img");
+        recipeImgEl.setAttribute("src", data.baseUri + data.results[i].image);
+        recipeImgEl.setAttribute("id", "placeholder")
+        var recipeInfoEl = document.createElement("div");
+        recipeInfoEl.classList.add("recipe-info");
+        var recipeTitleName = document.createElement("p");
+        var recipeBakeTime = document.createElement("p");
+
+        // Setting the names of both the title and bake time.
+        recipeTitleName.textContent = data.results[i].title;
+        recipeBakeTime.innerHTML = "Bake Time: " + data.results[i].readyInMinutes;
+
+        // Appending the elements to their appropriate sections.
+        recipeInfoEl.append(recipeTitleName,recipeBakeTime);
+        recipeListItemEl.append(recipeImgEl,recipeInfoEl);
         recipeListEl.appendChild(recipeListItemEl);
     }
 }
