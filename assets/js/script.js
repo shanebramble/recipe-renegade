@@ -7,7 +7,7 @@
 
 var recipeListEl = document.querySelector("#recipe-list");
 
-var displayRecipes = function (data){
+var displayRecipes = function (data) {
 
     for (var i = 0; i < data.results.length; i++) {
 
@@ -27,8 +27,8 @@ var displayRecipes = function (data){
         recipeBakeTime.innerHTML = "Bake Time: " + data.results[i].readyInMinutes;
 
         // Appending the elements to their appropriate sections.
-        recipeInfoEl.append(recipeTitleName,recipeBakeTime);
-        recipeListItemEl.append(recipeImgEl,recipeInfoEl);
+        recipeInfoEl.append(recipeTitleName, recipeBakeTime);
+        recipeListItemEl.append(recipeImgEl, recipeInfoEl);
         recipeListEl.appendChild(recipeListItemEl);
     }
 }
@@ -44,7 +44,7 @@ fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searc
     .then(response => {
         response.json().then(function (data) {
             displayRecipes(data);
-          });
+        });
     })
     .catch(err => {
         console.error(err);
