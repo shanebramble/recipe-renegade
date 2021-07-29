@@ -33,19 +33,22 @@ var displayRecipes = function (data) {
     }
 }
 
-
-fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=burger", {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-key": "91b01c1641mshdc2dde83b163e1ep177e07jsn1e7eabbac250",
-            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-        }
-    })
-    .then(response => {
-        response.json().then(function (data) {
-            displayRecipes(data);
+var generateRecipes = function (recipe){
+    fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=" + recipe, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": "91b01c1641mshdc2dde83b163e1ep177e07jsn1e7eabbac250",
+                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+            }
+        })
+        .then(response => {
+            response.json().then(function (data) {
+                displayRecipes(data);
+            });
+        })
+        .catch(err => {
+            console.error(err);
         });
-    })
-    .catch(err => {
-        console.error(err);
-    });
+};
+
+generateRecipes("pasta");
