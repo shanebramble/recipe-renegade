@@ -24,7 +24,7 @@ var displayRecipes = function (data) {
 
         // Setting the names of both the title and bake time.
         recipeTitleName.textContent = data.results[i].title;
-        recipeBakeTime.innerHTML = "Bake Time: " + data.results[i].readyInMinutes;
+        recipeBakeTime.innerHTML = "Bake Time: " + data.results[i].readyInMinutes + " mins";
 
         // Appending the elements to their appropriate sections.
         recipeInfoEl.append(recipeTitleName, recipeBakeTime);
