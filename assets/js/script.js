@@ -31,11 +31,7 @@ fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searc
         response.json().then(function (data) {
             displayRecipes(data);
           });
+    })
+    .catch(err => {
+        console.error(err);
     });
-    // .catch(err => {
-    //     console.error(err);
-    // });
-
-
-    // https: //spoonacular.com/recipeImages/thai-sweet-potato-veggie-burgers-with-spicy-peanut-sauce-262682.jpg
-    // https: //spoonacular.com/recipeImages/thai-sweet-potato-veggie-burgers-with-spicy-peanut-sauce-262682.jpg
