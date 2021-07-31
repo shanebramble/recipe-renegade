@@ -7,6 +7,50 @@
 
 var recipeListEl = document.querySelector("#recipe-list");
 
+var displayTypeRecipes = function (data) {
+
+    
+    for (var i = 0; i < data.results.length; i++) {
+
+        // Create the elements to hold the recipe title, and image.
+        var recipeListItemEl = document.createElement("div");
+        recipeListItemEl.classList.add("result");
+        var recipeImgEl = document.createElement("img");
+        recipeImgEl.setAttribute("src", data.results[i].image);
+        recipeImgEl.setAttribute("id", "placeholder")
+        var recipeInfoEl = document.createElement("div");
+        recipeInfoEl.classList.add("recipe-info");
+        var recipeTitleName = document.createElement("p");
+        // var recipeBakeTime = document.createElement("p");
+
+        // Setting the names of both the title and bake time.
+        recipeTitleName.textContent = data.results[i].title;
+        // recipeBakeTime.innerHTML = "Bake Time: " + data.results[i].readyInMinutes + " mins";
+
+        // Appending the elements to their appropriate sections.
+        recipeInfoEl.append(recipeTitleName);
+        recipeListItemEl.append(recipeImgEl, recipeInfoEl);
+        recipeListEl.appendChild(recipeListItemEl);
+    }
+};
+var generateTypeRecipes = function (type) {
+    fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?limitLicense=false&offset=0&number=10&type=" + type, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": "91b01c1641mshdc2dde83b163e1ep177e07jsn1e7eabbac250",
+                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+            }
+        })
+        .then(response => {
+            response.json().then(function (data) {
+                displayTypeRecipes(data);
+            });
+        })
+        .catch(err => {
+            console.error(err);
+        });
+};
+
 var displayRecipes = function (data) {
 
     for (var i = 0; i < data.results.length; i++) {
@@ -33,7 +77,7 @@ var displayRecipes = function (data) {
     }
 }
 
-var generateRecipes = function (recipe){
+var generateRecipes = function (recipe) {
     fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=" + recipe, {
             "method": "GET",
             "headers": {
@@ -51,4 +95,6 @@ var generateRecipes = function (recipe){
         });
 };
 
-generateRecipes("pasta");
+
+$(".breakfast").click(generateTypeRecipes("breakfast"));
+generateRecipes("burger");
