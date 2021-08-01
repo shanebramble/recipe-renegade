@@ -4,6 +4,7 @@ var getRecipeId = function () {
     // Grab recipe id from url query string.
     var queryString = document.location.search;
     var recipeID = queryString.split("=")[1];
+    console.log("this is the id on third page: " +recipeID);
 
     if (recipeID) {
         loadRecipe(recipeID);
