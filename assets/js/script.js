@@ -42,6 +42,7 @@ var displayRecipes = function (data) {
         // Create the elements to hold the recipe title, image and bake time.
         var recipeListItemEl = document.createElement("div");
         recipeListItemEl.classList.add("result");
+        recipeListItemEl.setAttribute("data-id",data.results[i].id);
         var recipeImgEl = document.createElement("img");
         recipeImgEl.setAttribute("src", data.baseUri + data.results[i].image);
         recipeImgEl.setAttribute("id", "placeholder")
