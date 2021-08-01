@@ -3,14 +3,14 @@ var recipeDetailsEl = document.querySelector("#recipe-details")
 var detailedRecipe = function (data) {
 
     var recipeImgEl = document.createElement("img");
-    recipeImgEl.setAttribute("src", data.baseUri + data.results.image);
+    recipeImgEl.setAttribute("src", data.baseUri + data.image);
     recipeImgEl.setAttribute("id", "placeholder")
     var recipeInfoEl = document.createElement("div");
     recipeInfoEl.classList.add("recipe-info");
     var recipeTitleName = document.createElement("p");
 
-    recipeTitleName.textContent = data.results.id.title;
-    recipeBakeTime.innerHTML = "Bake Time: " + data.results.id.readyInMinutes + " mins";
+    recipeTitleName.textContent = data.id.title;
+    recipeBakeTime.innerHTML = "Bake Time: " + data.id.readyInMinutes + " mins";
 
     // Appending the elements to their appropriate sections.
     recipeInfoEl.append(recipeTitleName, recipeBakeTime);
@@ -18,7 +18,7 @@ var detailedRecipe = function (data) {
     recipeDetailsEl.appendChild(recipeListItemEl);
 };
 
-var redirectRecipe = function (id) {
+var loadRecipe = function (id) {
     fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + id + "/information", {
         "method": "GET",
         "headers": {
@@ -37,5 +37,5 @@ var redirectRecipe = function (id) {
     });
 };
 
-redirectRecipe("479101");
-console.log(redirectRecipe)
+loadRecipe("479101");
+console.log(loadRecipe)
