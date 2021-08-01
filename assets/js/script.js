@@ -36,7 +36,7 @@ var recipeListEl = document.querySelector("#recipe-list");
 
 
 var displayRecipes = function (data) {
-
+    recipeListEl.innerHTML = "";
     for (var i = 0; i < data.results.length; i++) {
 
         // Create the elements to hold the recipe title, image and bake time.
@@ -96,9 +96,9 @@ var generateRecipes = function (recipe) {
         });
 };
 
-$(".breakfast").click(generateTypeRecipes("breakfast"));
-$(".main-course").click(generateTypeRecipes("main course"));
-$(".appetizer").click(generateTypeRecipes("appetizer"));
-$(".dessert").click(generateTypeRecipes("dessert"));
+$(".breakfast").click(() => generateTypeRecipes("breakfast"));
+$(".main-course").click(() => generateTypeRecipes("main course"));
+$(".appetizer").click(() => generateTypeRecipes("appetizer"));
+$(".dessert").click(() => generateTypeRecipes("dessert"));
 
 generateRecipes("burger");
