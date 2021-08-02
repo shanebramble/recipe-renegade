@@ -4,7 +4,7 @@ var getRecipeId = function () {
     // Grab recipe id from url query string.
     var queryString = document.location.search;
     var recipeID = queryString.split("=")[1];
-    console.log("this is the id on third page: " +recipeID);
+    console.log("This is the id on third page: " +recipeID);
 
     if (recipeID) {
         loadRecipe(recipeID);
@@ -22,10 +22,10 @@ var detailedRecipe = function (data) {
     var recipeTitleName = document.createElement("p");
 
     recipeTitleName.textContent = data.id.title;
-    recipeBakeTime.innerHTML = "Bake Time: " + data.id.readyInMinutes + " mins";
+    // recipeBakeTime.innerHTML = "Bake Time: " + data.id.readyInMinutes + " mins";
 
     // Appending the elements to their appropriate sections.
-    recipeInfoEl.append(recipeTitleName, recipeBakeTime);
+    // recipeInfoEl.append(recipeTitleName, recipeBakeTime);
     recipeListItemEl.append(recipeImgEl, recipeInfoEl);
     recipeDetailsEl.appendChild(recipeListItemEl);
 };
