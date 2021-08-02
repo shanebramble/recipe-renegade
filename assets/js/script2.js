@@ -1,5 +1,18 @@
 var recipeDetailsEl = document.querySelector("#recipe-details")
 
+var getRecipeId = function () {
+    // Grab recipe id from url query string.
+    var queryString = document.location.search;
+    var recipeID = queryString.split("=")[1];
+    console.log("This is the id on third page: " +recipeID);
+
+    if (recipeID) {
+        loadRecipe(recipeID);
+    } else {
+        document.location.replace("./index.html");
+    }
+};
+
 var detailedRecipe = function (data) {
 
     // container for entire recipe article
@@ -10,11 +23,14 @@ var detailedRecipe = function (data) {
     var recipeImgEl = document.createElement("img");
     // container for recipe overview
     var recipeOverviewEl = document.createElement("div");
-    var recipeTitleName = document.createElement("p");
     var recipePrepTime = document.createElement("p");
     var recipeCookTime = document.createElement("p");
     var recipeTotalTime = document.createElement("p");
     var recipeServings = document.createElement("p");
+    // container for recipe ingredients
+    var recipeIngredients = document.createElement("div");
+    // container for recipe ingredients
+    var recipeDirections = document.createElement("div");
     recipeImgEl.setAttribute("src", data.image);
     recipeImgEl.setAttribute("id", "placeholder")
     recipeOverviewEl.classList.add("cook-overview");
@@ -54,5 +70,6 @@ var loadRecipe = function (id) {
     });
 };
 
-loadRecipe("479101");
-console.log(loadRecipe)
+// loadRecipe("479101");
+// console.log(loadRecipe)
+getRecipeId();
