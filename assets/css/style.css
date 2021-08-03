@@ -44,3 +44,24 @@ p {
 /* footer {
     background-color: cornflowerblue;
 } */
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.recipe {
+    background-color: chocolate;
+}
+
+.recipe-overview {
+    background-color: aqua;
+}
+
+.recipe-directions {
+    background-color: bisque;
+}
+
+.recipe-ingredients {
+    background-color: brown;
+}

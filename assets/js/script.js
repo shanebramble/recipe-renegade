@@ -9,7 +9,7 @@ var recipeListEl = document.querySelector("#recipe-list");
 
 // var displayTypeRecipes = function (data) {
 
-    
+
 //     for (var i = 0; i < data.results.length; i++) {
 
 //         // Create the elements to hold the recipe title, and image.
@@ -43,7 +43,7 @@ var displayRecipes = function (data) {
         var recipeListItemEl = document.createElement("a");
         recipeListItemEl.classList.add("result");
         recipeListItemEl.setAttribute("href", "./third-page.html?id=" + data.results[i].id);
-        recipeListItemEl.setAttribute("data-id",data.results[i].id);
+        recipeListItemEl.setAttribute("data-id", data.results[i].id);
 
         var recipeImgEl = document.createElement("img");
         recipeImgEl.setAttribute("src", data.baseUri + data.results[i].image);
