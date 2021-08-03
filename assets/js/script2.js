@@ -4,7 +4,7 @@ var getRecipeId = function () {
     // Grab recipe id from url query string.
     var queryString = document.location.search;
     var recipeID = queryString.split("=")[1];
-    console.log("This is the id on third page: " +recipeID);
+    console.log("This is the id on third page: " + recipeID);
 
     if (recipeID) {
         loadRecipe(recipeID);
@@ -13,45 +13,53 @@ var getRecipeId = function () {
     }
 };
 
+// function to display recipe data
 var detailedRecipe = function (data) {
 
-    // h2 for recipe title
+    // create h2 for recipe title, add class for styling, and pull title from data.title
     var recipeTitleEl = document.createElement("h2");
     recipeTitleEl.classList.add("recipe-name");
     recipeTitleEl.textContent = data.title;
-    // img
+    // create img for recipe image, add src Attribute assigning URL from data.image
     var recipeImgEl = document.createElement("img");
     recipeImgEl.setAttribute("src", data.image);
     recipeImgEl.setAttribute("id", "placeholder")
-    // container for recipe overview
+    // container for recipe overview and class for styling
     var recipeOverviewEl = document.createElement("div");
-    recipeOverviewEl.classList.add("cook-overview");
-    // prep time
+    recipeOverviewEl.classList.add("recipe-overview");
+    // create p to display prep time pulled from data
     var recipePrepTime = document.createElement("p");
     recipePrepTime.textContent = "Prep: " + data.preparationMinutes;
-    // cook time
+    // create p to display cook time pulled from data
     var recipeCookTime = document.createElement("p");
     recipeCookTime.textContent = "Cook: " + data.cookingMinutes + " mins";
-    // Total time
+    // create p to display total time pulled from data
     var recipeTotalTime = document.createElement("p");
     recipeTotalTime.textContent = "Total: " + data.readyInMinutes + " mins";
-    // servings
+    // create p to display servings pulled from data
     var recipeServings = document.createElement("p");
     recipeServings.textContent = "Servings: " + data.servings;
     // container for recipe ingredients
     var recipeIngredients = document.createElement("div");
+    recipeIngredients.classList.add("recipe-ingredients");
     var recipeIngredientsList = document.createElement("ul");
     var recipeIngredientListItem = document.createElement("li");
     // container for recipe directions
     var recipeDirections = document.createElement("div");
-    console.log(recipeImgEl);
+    recipeDirections.classList.add("recipe-directions");
+    recipeDirections.textContent = data.instructions;
     
+    for (var i = 0; i < data.extendedIngredients.length; i++) {
+        var recipeIngredientListItem = document.createElement("li");
+        recipeIngredientListItem.textContent = data.extendedIngredients[i].original;
+
+        recipeIngredientsList.append(recipeIngredientListItem)
+    }
+
     // Append the recipe overview elements to their appropriate sections.
     recipeOverviewEl.append(recipePrepTime, recipeCookTime, recipeTotalTime, recipeServings);
-    recipeIngredientsList.append(recipeIngredientListItem)
     recipeIngredients.append(recipeIngredientsList)
     recipeDetailsEl.append(recipeTitleEl, recipeImgEl, recipeOverviewEl, recipeIngredients, recipeDirections);
-    console.log(recipeOverviewEl);
 };
 
 var loadRecipe = function (id) {
