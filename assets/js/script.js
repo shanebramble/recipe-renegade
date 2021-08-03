@@ -81,6 +81,6 @@ $(".main-course").click(() => generateTypeRecipes("main course"));
 $(".appetizer").click(() => generateTypeRecipes("appetizer"));
 $(".dessert").click(() => generateTypeRecipes("dessert"));
 
-generateRecipes("burger");
+// generateRecipes("burger");
 
-// getRecipeInput();
+getRecipeInput();
