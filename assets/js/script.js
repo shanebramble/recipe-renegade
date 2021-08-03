@@ -1,39 +1,16 @@
-// fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=burger&diet=vegetarian&excludeIngredients=coconut&intolerances=egg%2C%20gluten&number=10&offset=0&type=main%20course&x-rapidapi-key=91b01c1641mshdc2dde83b163e1ep177e07jsn1e7eabbac250")
-//     .then (function (response) {
-//         response.json().then (function (data) {
-//             console.log(data);
-//           });
-//       });
-
 var recipeListEl = document.querySelector("#recipe-list");
 
-// var displayTypeRecipes = function (data) {
+var getRecipeInput = function (){
+    var queryRecipeNameString = document.location.search;
+    var recipeName = queryRecipeNameString.split("=")[1];
+    console.log("This is the name of the recipe you entered: " + recipeName);
 
-
-//     for (var i = 0; i < data.results.length; i++) {
-
-//         // Create the elements to hold the recipe title, and image.
-//         var recipeListItemEl = document.createElement("div");
-//         recipeListItemEl.classList.add("result");
-//         var recipeImgEl = document.createElement("img");
-//         recipeImgEl.setAttribute("src", data.results[i].image);
-//         recipeImgEl.setAttribute("id", "placeholder")
-//         var recipeInfoEl = document.createElement("div");
-//         recipeInfoEl.classList.add("recipe-info");
-//         var recipeTitleName = document.createElement("p");
-//         // var recipeBakeTime = document.createElement("p");
-
-//         // Setting the names of both the title and bake time.
-//         recipeTitleName.textContent = data.results[i].title;
-//         // recipeBakeTime.innerHTML = "Bake Time: " + data.results[i].readyInMinutes + " mins";
-
-//         // Appending the elements to their appropriate sections.
-//         recipeInfoEl.append(recipeTitleName);
-//         recipeListItemEl.append(recipeImgEl, recipeInfoEl);
-//         recipeListEl.appendChild(recipeListItemEl);
-//     }
-// };
-
+    if (recipeName) {
+        generateRecipes(recipeName);
+    } else {
+        document.location.replace("./index.html");
+    }
+};
 
 var displayRecipes = function (data) {
     recipeListEl.innerHTML = "";
@@ -105,3 +82,5 @@ $(".appetizer").click(() => generateTypeRecipes("appetizer"));
 $(".dessert").click(() => generateTypeRecipes("dessert"));
 
 generateRecipes("burger");
+
+// getRecipeInput();
