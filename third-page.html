@@ -1,44 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Results Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" integrity="sha512-UJfAaOlIRtdR+0P6C3KUoTDAxVTuy3lnSXLyLKlHYJlcSU8Juge/mjeaxDNMlw9LgeIotgz5FP8eUQPhX1q10A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/stylesv2.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Recipe Renegade</title>
   </head>
   <body>
-    <header>
-      <h1>
-        <a href="#">Recipe Renegade</a>
-      </h1>
+    <header class="title-style">
       <nav>
-        <ul>
-          <li>
-            <!-- Placeholder for link -->
-            <a href="#">Breakfast Recipes</a>
-          </li>
-          <li>
-            <!-- Placeholder for link -->
-            <a href="#">Lunch Recipes</a>
-          </li>
-          <li>
-            <!-- Placeholder for link -->
-            <a href="#">Dinner Recipes</a>
-          </li>
-          <li>
-            <!-- Placeholder for link -->
-            <a href="#">Trending Recipes</a>
-          </li>
-        </ul>
-        <!-- Search Bar -->
-        <input type="text" placeholder="Enter Dish Here" />
-        <!-- Button to go back to previous page -->
-        <button>
-          <a href="./second-page.html">Go Back</a>
-        </button>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Recipe Renegade <i class="fas fa-utensils"></i>
+          </a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+              <a href="#" type="button" class="breakfast">Breakfast Recipes</a>
+            </li>
+            <li>
+              <a href="#" type="button" class="main-course">Main Course Recipes</a>
+            </li>
+            <li>
+              <a href="#" type="button" class="appetizer">Appetizer Recipes</a>
+            </li>
+            <li>
+              <a href="#" type="button" class="dessert">Dessert Recipes</a>
+            </li>
+          </ul>
+        </div>
       </nav>
+      <h1>Testing The Api</h1>
     </header>
     <main id="recipe-details" class="container">
       <!-- Display Recipe Here -->

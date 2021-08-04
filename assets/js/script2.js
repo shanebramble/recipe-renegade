@@ -49,6 +49,7 @@ var detailedRecipe = function (data) {
     recipeDirections.classList.add("recipe-directions");
     recipeDirections.textContent = data.instructions;
     
+    // for loop to create and append li to show each ingredient
     for (var i = 0; i < data.extendedIngredients.length; i++) {
         var recipeIngredientListItem = document.createElement("li");
         recipeIngredientListItem.textContent = data.extendedIngredients[i].original;
@@ -62,6 +63,7 @@ var detailedRecipe = function (data) {
     recipeDetailsEl.append(recipeTitleEl, recipeImgEl, recipeOverviewEl, recipeIngredients, recipeDirections);
 };
 
+// spoonacular api call for recipe information
 var loadRecipe = function (id) {
     fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + id + "/information", {
         "method": "GET",
@@ -81,5 +83,23 @@ var loadRecipe = function (id) {
     });
 };
 
+var testApi = function () {
+    fetch("https://tasty.p.rapidapi.com/feeds/list?from=0&vegetarian=%3CREQUIRED%3E&timezone=%2B0700&size=20", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-key": "2c6a28b8bamsh4fa138d603fa741p192f0ajsn19a4adcc2247",
+		"x-rapidapi-host": "tasty.p.rapidapi.com"
+	}
+})
+.then(response => {
+	console.log(response);
+})
+.catch(err => {
+	console.error(err);
+});
+};
+
 // loadRecipe("479101");
 getRecipeId();
+
+testApi();
