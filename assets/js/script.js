@@ -50,7 +50,6 @@ var generateTypeRecipes = function (type) {
         })
         .then(response => {
             response.json().then(function (data) {
-                // $(".result").remove();
                 displayRecipes(data);
             });
         })
