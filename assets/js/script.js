@@ -3,8 +3,7 @@ var recipeListEl = document.querySelector("#recipe-list");
 var getRecipeInput = function (){
     var queryRecipeNameString = document.location.search;
     var recipeName = queryRecipeNameString.split("=")[1];
-    console.log("This is the name of the recipe you entered: " + recipeName);
-
+    
     if (recipeName) {
         generateRecipes(recipeName);
     } else {
@@ -12,14 +11,14 @@ var getRecipeInput = function (){
     }
 };
 
-var displayRecipes = function (data) {
+var displayRecipes = function (data, recipe) {
     recipeListEl.innerHTML = "";
     for (var i = 0; i < data.results.length; i++) {
 
         // Create the elements to hold the recipe title, image and bake time.
         var recipeListItemEl = document.createElement("a");
         recipeListItemEl.classList.add("result");
-        recipeListItemEl.setAttribute("href", "./third-page.html?id=" + data.results[i].id);
+        recipeListItemEl.setAttribute("href", "./third-page.html?q="+ recipe +"&id=" + data.results[i].id);
         recipeListItemEl.setAttribute("data-id", data.results[i].id);
 
         var recipeImgEl = document.createElement("img");
@@ -68,7 +67,7 @@ var generateRecipes = function (recipe) {
         })
         .then(response => {
             response.json().then(function (data) {
-                displayRecipes(data);
+                displayRecipes(data ,recipe);
             });
         })
         .catch(err => {

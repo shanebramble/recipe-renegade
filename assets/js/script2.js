@@ -3,16 +3,27 @@ var recipeDetailsEl = document.querySelector("#recipe-article")
 var getRecipeId = function () {
     // Grab recipe id from url query string.
     var queryString = document.location.search;
-    var recipeID = queryString.split("=")[1];
-    console.log("This is the id on third page: " + recipeID);
+    // var recipeID = queryString.split("=");
+    // var recipeSearch = queryString.split("=")[1];
+    var array = [];
+    queryString.split('=').forEach(function (value) {
+        array.push(value.split('&'));
+    });
+
+    var recipeID = array[2][0];
+    var recipeSearch = array[1][0];
 
     if (recipeID) {
         loadRecipe(recipeID);
+        updateBackBtn(recipeSearch);
     } else {
         document.location.replace("./index.html");
     }
 };
 
+function updateBackBtn (recipeSearch){
+    $(".backbtn").attr("href", "./second-page.html?q=" + recipeSearch);
+}
 // function to display recipe data
 var detailedRecipe = function (data) {
 
@@ -99,7 +110,7 @@ var testApi = function () {
 });
 };
 
-// loadRecipe("479101");
+
 getRecipeId();
 
 testApi();
