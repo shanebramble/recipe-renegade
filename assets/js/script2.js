@@ -3,16 +3,27 @@ var recipeDetailsEl = document.querySelector("#recipe-article")
 var getRecipeId = function () {
     // Grab recipe id from url query string.
     var queryString = document.location.search;
-    var recipeID = queryString.split("=")[1];
-    console.log("This is the id on third page: " + recipeID);
+    // var recipeID = queryString.split("=");
+    // var recipeSearch = queryString.split("=")[1];
+    var array = [];
+    queryString.split('=').forEach(function (value) {
+        array.push(value.split('&'));
+    });
+
+    var recipeID = array[2][0];
+    var recipeSearch = array[1][0];
 
     if (recipeID) {
         loadRecipe(recipeID);
+        updateBackBtn(recipeSearch);
     } else {
         document.location.replace("./index.html");
     }
 };
 
+function updateBackBtn (recipeSearch){
+    $(".backbtn").attr("href", "./second-page.html?q=" + recipeSearch);
+}
 // function to display recipe data
 var detailedRecipe = function (data) {
 
@@ -66,21 +77,21 @@ var detailedRecipe = function (data) {
 // spoonacular api call for recipe information
 var loadRecipe = function (id) {
     fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + id + "/information", {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-key": "2c6a28b8bamsh4fa138d603fa741p192f0ajsn19a4adcc2247",
-            "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
-        }
-    })
-    .then(response => {
-        response.json().then(function (data) {
-            console.log(data);
-            detailedRecipe(data);
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": "2c6a28b8bamsh4fa138d603fa741p192f0ajsn19a4adcc2247",
+                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+            }
+        })
+        .then(response => {
+            response.json().then(function (data) {
+                console.log(data);
+                detailedRecipe(data);
+            });
+        })
+        .catch(err => {
+            console.error(err);
         });
-    })
-    .catch(err => {
-        console.error(err);
-    });
 };
 
 var testApi = function () {
@@ -99,7 +110,7 @@ var testApi = function () {
 });
 };
 
-// loadRecipe("479101");
+
 getRecipeId();
 
 testApi();
