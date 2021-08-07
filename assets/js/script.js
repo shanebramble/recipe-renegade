@@ -98,7 +98,6 @@ var generateRecipes = function (recipe) {
             console.error(err);
         });
 };
-
 $(".breakfast").click(() => generateTypeRecipes("breakfast"));
 $(".main-course").click(() => generateTypeRecipes("main course"));
 $(".appetizer").click(() => generateTypeRecipes("appetizer"));
