@@ -11,7 +11,53 @@ var getRecipeInput = function () {
         document.location.replace("./index.html");
     }
 };
+var displayDrinks = function (data ,recipe) {
+    searchResuleTitleEl.textContent = "Search Results: " + recipe;
+    recipeListEl.innerHTML = "";
 
+    for (var i = 0; i < data.drinks.length; i++) {
+
+        // Create the elements to hold the recipe title, image and bake time.
+        var recipeListItemEl = document.createElement("a");
+        recipeListItemEl.classList.add("result");
+        recipeListItemEl.setAttribute("href", "./fourth-page.html?id=" + data.drinks[i].idDrink);
+        recipeListItemEl.setAttribute("data-id", data.drinks[i].idDrink);
+
+        var recipeImgEl = document.createElement("img");
+        recipeImgEl.setAttribute("src", data.drinks[i].strDrinkThumb);
+        recipeImgEl.setAttribute("id", "placeholder")
+        var recipeInfoEl = document.createElement("div");
+        recipeInfoEl.classList.add("recipe-info");
+        var recipeTitleName = document.createElement("p");
+
+        // Setting the names of both the title and bake time.
+        recipeTitleName.textContent = data.drinks[i].strDrink;
+
+        // Appending the elements to their appropriate sections.
+        recipeInfoEl.append(recipeTitleName);
+        recipeListItemEl.append(recipeImgEl, recipeInfoEl);
+        recipeListEl.append(recipeListItemEl);
+    }
+}
+
+var generateCocktails = function (drink) {
+    fetch("https://the-cocktail-db.p.rapidapi.com/randomselection.php", {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": "2c6a28b8bamsh4fa138d603fa741p192f0ajsn19a4adcc2247",
+                "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com"
+            }
+        })
+        .then(response => {
+            response.json().then(function (data) {
+                console.log(data);
+                displayDrinks(data, "Cocktails");
+            });
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
 var displayRecipes = function (data, recipe) {
     searchResuleTitleEl.textContent = "Search Results: " + recipe;
     recipeListEl.innerHTML = "";
@@ -80,6 +126,7 @@ $(".breakfast").click(() => generateTypeRecipes("breakfast", "Breakfast"));
 $(".main-course").click(() => generateTypeRecipes("main course", "Main Course"));
 $(".appetizer").click(() => generateTypeRecipes("appetizer", "Appetizer"));
 $(".dessert").click(() => generateTypeRecipes("dessert", "Dessert"));
+$(".cocktails").click(() => generateCocktails());
 
 getRecipeInput();
 
