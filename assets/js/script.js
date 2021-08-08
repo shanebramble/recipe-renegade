@@ -41,7 +41,7 @@ var displayRecipes = function (data, recipe) {
         recipeListEl.appendChild(recipeListItemEl);
     }
 }
-var generateTypeRecipes = function (type) {
+var generateTypeRecipes = function (type , recipe) {
     fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?type=" + type, {
             "method": "GET",
             "headers": {
@@ -51,8 +51,7 @@ var generateTypeRecipes = function (type) {
         })
         .then(response => {
             response.json().then(function (data) {
-            
-                displayRecipes(data);
+                displayRecipes(data,recipe);
             });
         })
         .catch(err => {
@@ -77,11 +76,9 @@ var generateRecipes = function (recipe) {
         });
 };
 
-$(".breakfast").click(() => generateTypeRecipes("breakfast"));
-$(".main-course").click(() => generateTypeRecipes("main course"));
-$(".appetizer").click(() => generateTypeRecipes("appetizer"));
-$(".dessert").click(() => generateTypeRecipes("dessert"));
-
-
+$(".breakfast").click(() => generateTypeRecipes("breakfast","Breakfast"));
+$(".main-course").click(() => generateTypeRecipes("main course","Main Course"));
+$(".appetizer").click(() => generateTypeRecipes("appetizer", "Appetizer"));
+$(".dessert").click(() => generateTypeRecipes("dessert", "Dessert"));
 
 getRecipeInput();
