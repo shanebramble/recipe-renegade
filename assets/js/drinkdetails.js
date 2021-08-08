@@ -23,7 +23,22 @@ var detailedDrink = function (data) {
     var drinkDirections = document.createElement("div");
     drinkDirections.classList.add("recipe-directions");
     drinkDirections.textContent = data.drinks[0].strInstructions;
-    
+    // arrays to grab strIngredient and strMeasure values
+    var ingredientArray = [data.drinks[0].strIngredient1, data.drinks[0].strIngredient2, data.drinks[0].strIngredient3, data.drinks[0].strIngredient4, data.drinks[0].strIngredient5, data.drinks[0].strIngredient6, data.drinks[0].strIngredient7, data.drinks[0].strIngredient8, data.drinks[0].strIngredient9, data.drinks[0].strIngredient10, data.drinks[0].strIngredient11, data.drinks[0].strIngredient12, data.drinks[0].strIngredient13, data.drinks[0].strIngredient14, data.drinks[0].strIngredient15];
+    var ingredientMeasurement = [data.drinks[0].strMeasure1, data.drinks[0].strMeasure2, data.drinks[0].strMeasure3, data.drinks[0].strMeasure4, data.drinks[0].strMeasure5, data.drinks[0].strMeasure6, data.drinks[0].strMeasure7, data.drinks[0].strMeasure8, data.drinks[0].strMeasure9, data.drinks[0].strMeasure10, data.drinks[0].strMeasure11, data.drinks[0].strMeasure12, data.drinks[0].strMeasure13, data.drinks[0].strMeasure14, data.drinks[0].strMeasure15];
+    // loop through ingredientArray and add all ingredients as list items
+    for (var i = 0; i < ingredientArray.length; i++) {
+        if (ingredientArray[i] === null) {
+            break;
+        }
+        else {
+        var drinkIngredientListItem = document.createElement("li");
+        drinkIngredientListItem.textContent = ingredientMeasurement[i] + ingredientArray[i];
+
+        drinkIngredientsList.append(drinkIngredientListItem)
+        }
+    };
+
     drinkIngredients.append(drinkIngredientsList)
     drinkDetailsEl.append(drinkTitleEl, drinkImgEl, drinkIngredients, drinkDirections);
 };
