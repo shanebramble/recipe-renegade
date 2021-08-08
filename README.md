@@ -17,6 +17,12 @@ various recipe websites for inspiration.
 * HTML
 * CSS
 * JavaScript/JQuery
+* Materialize UI
+
+### Server Side APIs
+
+* spoonacular API
+* The Cocktail DB
 
 ## Contribution
 
