@@ -1,4 +1,5 @@
 var recipeListEl = document.querySelector("#recipe-list");
+var searchResuleTitleEl = document.querySelector(".search-results-header");
 
 var getRecipeInput = function (){
     var queryRecipeNameString = document.location.search;
@@ -12,6 +13,7 @@ var getRecipeInput = function (){
 };
 
 var displayRecipes = function (data, recipe) {
+    searchResuleTitleEl.textContent = "Search Results: " + recipe;
     recipeListEl.innerHTML = "";
     for (var i = 0; i < data.results.length; i++) {
 
@@ -49,7 +51,7 @@ var generateTypeRecipes = function (type) {
         })
         .then(response => {
             response.json().then(function (data) {
-                // $(".result").remove();
+            
                 displayRecipes(data);
             });
         })
@@ -80,6 +82,6 @@ $(".main-course").click(() => generateTypeRecipes("main course"));
 $(".appetizer").click(() => generateTypeRecipes("appetizer"));
 $(".dessert").click(() => generateTypeRecipes("dessert"));
 
-// generateRecipes("burger");
+
 
 getRecipeInput();
