@@ -94,23 +94,4 @@ var loadRecipe = function (id) {
         });
 };
 
-var testApi = function () {
-    fetch("https://tasty.p.rapidapi.com/feeds/list?from=0&vegetarian=%3CREQUIRED%3E&timezone=%2B0700&size=20", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-key": "2c6a28b8bamsh4fa138d603fa741p192f0ajsn19a4adcc2247",
-		"x-rapidapi-host": "tasty.p.rapidapi.com"
-	}
-})
-.then(response => {
-	console.log(response);
-})
-.catch(err => {
-	console.error(err);
-});
-};
-
-
 getRecipeId();
-
-testApi();
