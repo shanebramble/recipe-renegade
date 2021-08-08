@@ -7,11 +7,38 @@ var getRecipeInput = function () {
 
     if (recipeName) {
         generateRecipes(recipeName);
+        saveRecentSearch(recipeName);
     } else {
         document.location.replace("./index.html");
     }
 };
-var displayDrinks = function (data ,recipe) {
+
+function saveRecentSearch(recipeName) {
+    var recentSearches = JSON.parse(localStorage.getItem("recent-search")) || [];
+    // Save typed in Recipe Searches
+    recentSearches.push(recipeName);
+    localStorage.setItem("recent-search", JSON.stringify(recentSearches));
+}
+
+function loadRecentSearch() {
+    var loadedRecent = JSON.parse(localStorage.getItem("recent-search")) || [];
+    loadedRecent.reverse();
+
+    for (var i = 0 ; i < 6; i++) {
+        var listEl = $("<li>").addClass("collection-item avatar");
+        var anchorEl = $("<a>").attr("href", "./second-page.html?q=" + loadedRecent[i]);
+        var imgEl = $("<i>").addClass("material-icons circle").text("folder");
+        var pEl = $("<p>").addClass("black-text");
+        var spanEl = $("<span>").addClass("recent-title").text(loadedRecent[i]);
+        pEl.append(spanEl);
+        anchorEl.append(imgEl,pEl)
+        listEl.append(anchorEl);
+        $(".collection").append(listEl);
+    }
+
+}
+
+var displayDrinks = function (data, recipe) {
     searchResuleTitleEl.textContent = "Search Results: " + recipe;
     recipeListEl.innerHTML = "";
 
@@ -129,7 +156,7 @@ $(".dessert").click(() => generateTypeRecipes("dessert", "Dessert"));
 $(".cocktails").click(() => generateCocktails());
 
 getRecipeInput();
-
+loadRecentSearch();
 $(document).ready(function () {
     $('.modal').modal();
 });
