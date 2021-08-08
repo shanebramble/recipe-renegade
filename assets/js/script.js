@@ -1,10 +1,10 @@
 var recipeListEl = document.querySelector("#recipe-list");
 var searchResuleTitleEl = document.querySelector(".search-results-header");
 
-var getRecipeInput = function (){
+var getRecipeInput = function () {
     var queryRecipeNameString = document.location.search;
     var recipeName = queryRecipeNameString.split("=")[1];
-    
+
     if (recipeName) {
         generateRecipes(recipeName);
     } else {
@@ -20,7 +20,7 @@ var displayRecipes = function (data, recipe) {
         // Create the elements to hold the recipe title, image and bake time.
         var recipeListItemEl = document.createElement("a");
         recipeListItemEl.classList.add("result");
-        recipeListItemEl.setAttribute("href", "./third-page.html?q="+ recipe +"&id=" + data.results[i].id);
+        recipeListItemEl.setAttribute("href", "./third-page.html?q=" + recipe + "&id=" + data.results[i].id);
         recipeListItemEl.setAttribute("data-id", data.results[i].id);
 
         var recipeImgEl = document.createElement("img");
@@ -41,7 +41,7 @@ var displayRecipes = function (data, recipe) {
         recipeListEl.appendChild(recipeListItemEl);
     }
 }
-var generateTypeRecipes = function (type , recipe) {
+var generateTypeRecipes = function (type, recipe) {
     fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?type=" + type, {
             "method": "GET",
             "headers": {
@@ -51,7 +51,7 @@ var generateTypeRecipes = function (type , recipe) {
         })
         .then(response => {
             response.json().then(function (data) {
-                displayRecipes(data,recipe);
+                displayRecipes(data, recipe);
             });
         })
         .catch(err => {
@@ -68,7 +68,7 @@ var generateRecipes = function (recipe) {
         })
         .then(response => {
             response.json().then(function (data) {
-                displayRecipes(data ,recipe);
+                displayRecipes(data, recipe);
             });
         })
         .catch(err => {
@@ -76,9 +76,13 @@ var generateRecipes = function (recipe) {
         });
 };
 
-$(".breakfast").click(() => generateTypeRecipes("breakfast","Breakfast"));
-$(".main-course").click(() => generateTypeRecipes("main course","Main Course"));
+$(".breakfast").click(() => generateTypeRecipes("breakfast", "Breakfast"));
+$(".main-course").click(() => generateTypeRecipes("main course", "Main Course"));
 $(".appetizer").click(() => generateTypeRecipes("appetizer", "Appetizer"));
 $(".dessert").click(() => generateTypeRecipes("dessert", "Dessert"));
 
 getRecipeInput();
+
+$(document).ready(function () {
+    $('.modal').modal();
+});
