@@ -6,12 +6,13 @@ var getCocktailID = function () {
 
     if (cocktailID) {
         loadDrink(cocktailID);
+        updateBackBtn();
     } else {
         document.location.replace("./index.html");
     }
 };
 function updateBackBtn (drinkSearch){
-    $(".backbtn").attr("href", "./second-page.html?q=" + drinkSearch);
+    $(".backbtn").attr("href", "./second-page.html?q=Cocktails");
 }
 // function to display drink data
 var detailedDrink = function (data) {
@@ -73,6 +74,4 @@ var loadDrink = function (id) {
         });
 };
 
-// loadDrink("11007");
-// loadDrink();
 getCocktailID();
