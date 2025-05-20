@@ -51,4 +51,4 @@ var generateRecipes = function (recipe){
         });
 };
 
-generateRecipes("pasta");
+generateRecipes("chicken");
